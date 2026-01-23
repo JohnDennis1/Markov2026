@@ -20,12 +20,9 @@ p_filled_poi = poisspdf(2, lambda)/ poisscdf(2, lambda);
 %% Problem 2
 clear;
 clc;
-
+%Part a
 C = 1/(integral2(@(x,y) x.*y,0,1,0,@(x)x));
 
-function f_xy = PDF(X,Y,C)
-f_xy = C*X*Y;
-end
 
 %% Problem 3
 clear;
@@ -62,4 +59,24 @@ grid on
 clear;
 clc;
 
-f_4 = @(t) 3 * t.^2 ./ 60^3;
+N = 10^5; %Num of observations for each friend
+
+f_4 = @(t) 3 .* t.^2 ./ (60^3);
+
+X = 60*rand(N, 3); %Creating random vars to represent ea friend
+T = max(X,[],2); %Taking max across column to find latest time
+
+x_pts = linspace(0,60,1000); %Points for plotting pdf
+y_pts = f_4(x_pts); %Evaluating xpts
+
+figure();
+plot(x_pts, y_pts, '-g')
+xlabel('Time (t) in minutes after 6pm')
+ylabel('f(t)')
+title('Function f(t) over Time')
+grid on
+
+hold on
+
+histogram(T, "Normalization","pdf")
+
