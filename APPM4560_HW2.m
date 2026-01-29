@@ -10,7 +10,6 @@ C = (gam-1)*(x_0)^(gam-1);
 
 pwr_pdf = @(x) C*x.^(-gam);
 x = linspace(10, 60, 1000);
-f1_x = pwr_pdf(x);
 
 sample100 = inverse_pwr_samp(x_0, gam,100); %inverse sampling for N = 100, 1000, 10000
 sample1000 = inverse_pwr_samp(x_0, gam, 1000);
@@ -24,7 +23,7 @@ histogram(sample1000, "Normalization","pdf");
 
 histogram(sample10000, "Normalization", "pdf");
 
-plot(x, f1_x, 'LineWidth', 2);
+plot(x, pwr_pdf(x), 'LineWidth', 2);
 xlim([0 60]);
 hold off;
 xlabel('x values');
@@ -79,7 +78,3 @@ xlabel('x values');
 ylabel('Probability Density');
 title('Histogram of Gamma Samples and PDF');
 legend('Gamma Samples via AR', 'PDF');
-
-%% Problem
-clear;
-clc;
