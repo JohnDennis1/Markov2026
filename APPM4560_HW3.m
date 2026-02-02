@@ -19,4 +19,18 @@ num_hrs2 = 1/p(1,2) + 1/p(2,3) + 1/p(3,1);
 num_hrs3 = num_hrs1/num_hrs2;
 
 %Part E
-p_50 = p^50;
+p_50 = p^50; %p_{ij}^k represent the prob of going from state i to j after k moves
+
+%% Problem 3
+clear;
+clc;
+
+%Part A
+p = [1 0 0 0 0;
+    1/3 0 2/3 0 0;
+    0 1/3 0 2/3 0;
+    0 0 1/3 0 2/3;
+    0 0 0 0 1];
+
+%Part B
+p_4 = p^4;
