@@ -1,7 +1,7 @@
 %% Problem 1: Gambler's Ruin with Retirement
 
 %Part B
-E = @(i,p,q,s) i + (p-q)/s * (1 - (1-sqrt(1 - 4*p*q)/(2*p))^i);
+E = @(i,p,q,s) i + (p-q)/s * (1 - ((1-sqrt(1 - 4*p*q))/(2*p))^i);
 
 %Part C
 
@@ -25,7 +25,7 @@ for k = 1:N
         if u < q
             money = money - 1; % Lose a dollar
         elseif u < win
-            money = money + 1; % Lose a dollar
+            money = money + 1; % Win a dollar
         else
             break;
         end
@@ -38,3 +38,4 @@ empiricalAnswer = mean(EVs);
 fprintf('After running the game 100 000 times, the EV is %.3f\n',empiricalAnswer);
 
 %% Something
+
