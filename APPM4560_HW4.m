@@ -1,4 +1,6 @@
 %% Problem 1: Gambler's Ruin with Retirement
+clear;
+clc;
 
 %Part B
 E = @(i,p,q,s) i + (p-q)/s * (1 - ((1-sqrt(1 - 4*p*q))/(2*p))^i);
@@ -37,5 +39,36 @@ empiricalAnswer = mean(EVs);
 
 fprintf('After running the game 100 000 times, the EV is %.3f\n',empiricalAnswer);
 
-%% Something
+%% Problem 2: Greedy Management
+clear;
+clc;
 
+%Part A
+n=6;
+p = zeros(n,n);
+p(1,6)=1;
+for k=2:n
+    for i=1:k
+        p(k,i) = binopdf(i-1,k-1,0.9);
+    end
+end
+
+%Part B
+r = p(2:end,2:end);
+I = eye(n-1);
+
+A = (I-r);
+b = ones(n-1,1);
+%Time for the machines to fail from each state
+x = A \ b;
+
+%Part C
+[V,D] = eig(p');
+
+Pi_vec = V(:,6)'/sum(V(:,6));
+
+prob_one_machine = Pi_vec(2); %prob that there's only one machine working a
+% randomly chosen week (in the long run)
+
+fprintf('Prob that only one machine is working in a random week is %.3f\n', ...
+    prob_one_machine);
